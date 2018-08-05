@@ -36,26 +36,14 @@ public class Main {
         abstractJDBC.create(inspector);*/
 
         AbstractJDBC abstractJDBC = new ReportDAOImp();
-/*        List<Report> report = abstractJDBC.getAll();
-        for (Report report1: report) {
+     //   List<Report> report = abstractJDBC.getAll();
+/*        for (Report report1 : report) {
             System.out.println(report1);
         }*/
 
-        Report report = new Report();
-        report.setQuarterPeriod(2);
-        report.setIncome(BigDecimal.valueOf(50000.00));
-        report.setTaxFromIncome(BigDecimal.valueOf(10000.00));
-        report.setStatusReport(Report.StatusReport.PENDING);
-        report.setRejectedReason("");
-        report.setInspectorId(1);
-        report.setTaxpayerId(1);
-       // abstractJDBC.create(report);
+        Report report1 = ((ReportDAOImp) abstractJDBC).getByPK(6);
+        abstractJDBC.delete(report1);
 
-        Report report1 = ((ReportDAOImp) abstractJDBC).getByPK(1);
-       // System.out.println(report1);
-        report1.setStatusReport(Report.StatusReport.APPROVED);
-
-        abstractJDBC.update(report1);
     }
 
 }

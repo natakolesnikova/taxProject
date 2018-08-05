@@ -69,10 +69,9 @@ public class AbstractJDBCTest {
 
     @Test
     public void deleteUser() throws PersistException {
-        AbstractJDBC abstractJDBC = new UserDAOImp();
-        User user = ((UserDAOImp) abstractJDBC).getUserByPassword("qwerty123");
+        User user = ((UserDAOImp) abstractJDBCUser).getUserByPassword("qwerty123");
         Assert.assertNotNull(user);
-        abstractJDBC.delete(user);
+        abstractJDBCUser.delete(user);
     }
 
     @Test
@@ -94,7 +93,7 @@ public class AbstractJDBCTest {
         Assert.assertTrue(user.getId() == 1);
     }
 
-    @Ignore
+  //  @Ignore
     @Test
     public void createInspector() throws PersistException {
         Inspector inspector = new Inspector.Builder()
@@ -107,12 +106,11 @@ public class AbstractJDBCTest {
         Assert.assertEquals(inspector.getWorkNumber(), actualInspector.getWorkNumber());
     }
 
-    @Ignore
     @Test
     public void updateInspector() throws PersistException {
-        Inspector inspector = ((InspectorDAOImp) abstractJDBCInspector).getByPK(3);
+        Inspector inspector = ((InspectorDAOImp) abstractJDBCInspector).getByPK(10);
         inspector.setWorkStatus(2);
-      //  inspector.setWorkNumber(5678);
+        inspector.setWorkNumber(5678);
         abstractJDBCInspector.update(inspector);
         Assert.assertTrue(inspector.getWorkStatus() == 2);
         Assert.assertTrue(inspector.getWorkNumber() == 5678);
@@ -162,6 +160,13 @@ public class AbstractJDBCTest {
         abstractJDBCReport.create(report);
         Report actualReport = ((ReportDAOImp)abstractJDBCReport).getReportByRejectedReason("report created");
         Assert.assertEquals(report.getRejectedReason(), actualReport.getRejectedReason());
+    }
+
+    @Test
+    public void deleteReport() throws PersistException {
+        Report report = ((ReportDAOImp)abstractJDBCReport).getReportByRejectedReason("report created");
+        Assert.assertNotNull(report);
+        abstractJDBCReport.delete(report);
     }
 
 }
