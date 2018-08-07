@@ -12,7 +12,7 @@ import java.util.Objects;
 public class TaxPayerCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-/*        HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
 
         TaxPayer taxPayer = (TaxPayer) session.getAttribute("taxPayer");
 
@@ -23,6 +23,6 @@ public class TaxPayerCommand implements Command {
                 //logg
                 System.out.println("failed to redirect to login page");
             }
-        }*/
+        }
     }
 }

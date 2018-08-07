@@ -25,8 +25,8 @@ import java.util.UUID;
 public class LoginServlet implements Command {
 
     private final ServiceFactory serviceFactory = ServiceFactoryImpl.getFactory();
-/*    private final SessionDAO sessionDao = SessionDAOImpl.SESSION_DAO;
-    public static final String USER_TOKEN_KEY = "user-token";*/
+    private final SessionDAO sessionDao = SessionDAOImpl.SESSION_DAO;
+    public static final String USER_TOKEN_KEY = "user-token";
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -66,10 +66,10 @@ public class LoginServlet implements Command {
         if (user.getUserRoleId() == 1) {
             Inspector inspector = serviceFactory.getInspectorService().getInspectorByUser(user);
             session.setAttribute("inspector", inspector);
-/*            String token = UUID.randomUUID().toString();
+            String token = UUID.randomUUID().toString();
             Cookie cookie = new Cookie(USER_TOKEN_KEY, token);
             response.addCookie(cookie);
-            sessionDao.save(new Session(token, inspector));*/
+            sessionDao.save(new Session(token, inspector));
             try {
                 response.sendRedirect(request.getContextPath() + "/controller?command=inspector&page=inspector.jsp");
             } catch (IOException e) {
@@ -80,10 +80,10 @@ public class LoginServlet implements Command {
         if (user.getUserRoleId() == 2) {
             TaxPayer taxPayer = serviceFactory.getTaxPayerService().getTaxpayerByUser(user);
             session.setAttribute("taxPayer", taxPayer);
-/*            String token = UUID.randomUUID().toString();
+            String token = UUID.randomUUID().toString();
             Cookie cookie = new Cookie(USER_TOKEN_KEY, token);
             response.addCookie(cookie);
-            sessionDao.save(new Session(token, taxPayer));*/
+            sessionDao.save(new Session(token, taxPayer));
             try {
                 response.sendRedirect(request.getContextPath() + "/controller?command=taxpayer&page=taxPayer.jsp");
             } catch (IOException e) {

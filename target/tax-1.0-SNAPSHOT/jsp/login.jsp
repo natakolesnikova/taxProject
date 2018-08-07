@@ -11,10 +11,13 @@
 <html>
 <head>
     <title>Title</title>
+    <style type="text/css">
+        <%@include file="/bootstrap/bootstrap.min.css"%>
+    </style>
 </head>
 <body>
-    <h2>Login Page</h2>
-    <c:if test="${sessionScope.authenticationFailed}">
+
+<%--    <c:if test="${sessionScope.authenticationFailed}">
         <c:set var="authenticationFailed" value="false" scope="session"/>
     </c:if>
     <div class="form">
@@ -27,9 +30,9 @@
             <input type="hidden" name="page" value="login.jsp"/>
             <button type="submit" >Sign In</button>
         </form>
-    </div>
+    </div>--%>
 
-<%--    <style>
+    <style>
         .vertical-center {
             min-height: 100%;
             display: flex;
@@ -55,6 +58,6 @@
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
             </form>
         </div>
-    </div>--%>
+    </div>
 </body>
 </html>

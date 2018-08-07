@@ -5,19 +5,18 @@ import com.tax.dao.SessionDAO;
 import com.tax.dao.daoImpl.SessionDAOImpl;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Objects;
 
-//import static com.tax.controller.LoginServlet.USER_TOKEN_KEY;
+import static com.tax.controller.LoginServlet.USER_TOKEN_KEY;
 
 //@WebServlet(urlPatterns = "/*")
 public class LoginFilter implements Filter {
 
-    private final SessionDAO sessionDAO = SessionDAOImpl.SESSION_DAO;
+   // private final SessionDAO sessionDAO = SessionDAOImpl.SESSION_DAO;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
