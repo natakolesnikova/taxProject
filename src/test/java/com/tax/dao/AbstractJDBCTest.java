@@ -93,7 +93,6 @@ public class AbstractJDBCTest {
         Assert.assertTrue(user.getId() == 1);
     }
 
-  //  @Ignore
     @Test
     public void createInspector() throws PersistException {
         Inspector inspector = new Inspector.Builder()
