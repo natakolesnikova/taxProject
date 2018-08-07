@@ -3,7 +3,7 @@ package com.tax.entity;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Inspector implements Serializable {
+public class Inspector extends User implements Serializable {
     private int id;
     private int workNumber;
     private int workStatus;
@@ -98,5 +98,15 @@ public class Inspector implements Serializable {
     public int hashCode() {
 
         return Objects.hash(getId(), getWorkNumber(), getWorkStatus(), getUserId());
+    }
+
+    @Override
+    public String toString() {
+        return "Inspector{" +
+                "id=" + id +
+                ", workNumber=" + workNumber +
+                ", workStatus=" + workStatus +
+                ", userId=" + userId +
+                '}';
     }
 }

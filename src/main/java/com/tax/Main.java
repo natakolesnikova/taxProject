@@ -1,7 +1,10 @@
 package com.tax;
 
 import com.tax.dao.AbstractJDBC;
+import com.tax.dao.daoImpl.FactoryDAOImpl;
+import com.tax.dao.daoImpl.InspectorDAOImp;
 import com.tax.dao.daoImpl.ReportDAOImp;
+import com.tax.entity.Inspector;
 import com.tax.entity.Report;
 import com.tax.exception.PersistException;
 
@@ -26,15 +29,17 @@ public class Main {
         inspector.setUserId(user.getId());
         abstractJDBC.create(inspector);*/
 
-        AbstractJDBC abstractJDBC = new ReportDAOImp();
+//        AbstractJDBC abstractJDBC = new ReportDAOImp();
      //   List<Report> report = abstractJDBC.getAll();
 /*        for (Report report1 : report) {
             System.out.println(report1);
         }*/
 
-        Report report1 = ((ReportDAOImp) abstractJDBC).getByPK(6);
-        abstractJDBC.delete(report1);
-
+/*        Report report1 = ((ReportDAOImp) abstractJDBC).getByPK(6);
+        abstractJDBC.delete(report1);*/
+        AbstractJDBC abstractJDBC = FactoryDAOImpl.getFactory().getInspectorDAOImpl();
+        Inspector inspector = ((InspectorDAOImp) abstractJDBC).getInspectorByUser(5);
+        System.out.println(inspector);
     }
 
 }

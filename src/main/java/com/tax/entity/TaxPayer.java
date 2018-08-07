@@ -3,7 +3,7 @@ package com.tax.entity;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class TaxPayer implements Serializable {
+public class TaxPayer extends User implements Serializable {
     private int id;
     private String passwordSerialNumber;
     private int passportNumber;

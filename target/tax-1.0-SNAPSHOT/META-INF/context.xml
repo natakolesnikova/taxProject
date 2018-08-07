@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+    <Resource name="jdbc/taxreturns" auth="Container"
+              type="javax.sql.DataSource"
+              maxTotal="10" maxIdle="5" maxWaitMillis="10000"
+              url="jdbc:mysql://localhost:3306/tax?useSSL=false&amp;createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=UTC"
+              driverClassName="com.mysql.jdbc.Driver"
+              username="root" password="root"/>
+</Context>
