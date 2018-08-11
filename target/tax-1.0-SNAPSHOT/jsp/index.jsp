@@ -15,8 +15,33 @@
 <body>
     <h2>Welcome</h2>
 
-<%--    <c:if test="${empty sessionScope.user}">
-        <a href="${pageContext.request.contextPath}/jsp/login.jsp">Go to LogIn Page</a>
+
+    <h3>What id </h3>
+
+<%--    <c:if test="${sessionScope.size() > 0}">
+        <c:if test="${sessionScope.user.userRoleId == 1}">
+
+        </c:if>
+        <c:if test="${sessionScope.user.userRoleId == 2}">
+            <a href="${pageContext.request.contextPath}/jsp/taxPayer.jsp">Go to taxpayer cabinet</a>
+        </c:if>
     </c:if>--%>
+   <%-- <c:if test="${cookie.size() == 0}">--%>
+<%--    <%if (session == null) {%>
+    <jsp:forward page="login.jsp" />
+    <%}%>--%>
+   <%-- </c:if>--%>
+
+    <c:if test="${not empty sessionScope.user}">
+        <c:if test="${sessionScope.inspector}">
+            <a href="${pageContext.request.contextPath}/jsp/inspector.jsp">TO inspector</a>
+        </c:if>
+        <c:if test="${sessionScope.taxPayer}">
+            <a href="${pageContext.request.contextPath}/jsp/taxPayer.jsp">TO taxPayer</a>
+        </c:if>
+    </c:if>
+    <c:if test="${empty sessionScope.user}">
+        <a href="${pageContext.request.contextPath}/jsp/login.jsp">TO LOGIN</a>
+    </c:if>
 </body>
 </html>

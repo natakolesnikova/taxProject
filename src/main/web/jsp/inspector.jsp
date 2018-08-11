@@ -11,6 +11,7 @@
     <title>Title</title>
 </head>
 <body>
+<input type="hidden" name="command" value="inspector"/>
     Hi inspector
     Welcome, ${sessionScope.inspector.workNumber}
     <h2>

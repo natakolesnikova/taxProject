@@ -61,7 +61,7 @@ public class LoginServlet implements Command {
 
     private void redirectUser(HttpServletRequest request, HttpServletResponse response, User user) {
         HttpSession session = request.getSession();
-      //  session.setAttribute("user", user);
+        session.setAttribute("user", user);
 
         if (user.getUserRoleId() == 1) {
             Inspector inspector = serviceFactory.getInspectorService().getInspectorByUser(user);
@@ -71,7 +71,7 @@ public class LoginServlet implements Command {
             response.addCookie(cookie);
             sessionDao.save(new Session(token, inspector));
             try {
-                response.sendRedirect(request.getContextPath() + "/controller?command=inspector&page=inspector.jsp");
+                response.sendRedirect(request.getContextPath() + "/?command=inspector&page=inspector.jsp");
             } catch (IOException e) {
                 System.out.println("troubles with redirect to inspector cabinet");
                 e.printStackTrace();
@@ -85,7 +85,7 @@ public class LoginServlet implements Command {
             response.addCookie(cookie);
             sessionDao.save(new Session(token, taxPayer));
             try {
-                response.sendRedirect(request.getContextPath() + "/controller?command=taxpayer&page=taxPayer.jsp");
+                response.sendRedirect(request.getContextPath() + "/?command=taxpayer&page=taxPayer.jsp");
             } catch (IOException e) {
                 System.out.println("troubles with redirect to taxpayer cabinet");
                 e.printStackTrace();
