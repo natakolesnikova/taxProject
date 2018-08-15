@@ -5,7 +5,7 @@ import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 public class WrapperConnector {
-    private static WrapperConnector wrapperConnector;
+    private static volatile WrapperConnector wrapperConnector;
     private Connection connection;
     private WrapperConnector() {
         try {
@@ -24,7 +24,11 @@ public class WrapperConnector {
 
     public static WrapperConnector getInstance() {
         if (wrapperConnector == null) {
-            wrapperConnector =  new WrapperConnector();
+            synchronized (WrapperConnector.class) {
+                if (wrapperConnector == null) {
+                    wrapperConnector = new WrapperConnector();
+                }
+            }
         }
         return wrapperConnector;
     }
