@@ -118,4 +118,24 @@ public class InspectorDAOImp extends AbstractJDBC<Inspector, Integer> implements
         }
         return inspector.iterator().next();
     }
+
+    public Inspector getInspectorByUser(int userId) throws PersistException {
+        List<Inspector> inspectors = null;
+        String sql = resourceBundle.getString("getInspectorByUser");
+        try (PreparedStatement statement = wrapperConnector.getStatement(sql)) {
+            statement.setInt(1, userId);
+            ResultSet resultSet = statement.executeQuery();
+            inspectors = parseResultSet(resultSet);
+        } catch (SQLException e) {
+            System.out.println("smth wrong with sql");
+            e.printStackTrace();
+        }
+        if (inspectors == null || inspectors.size() == 0) {
+            return null;
+        }
+        if (inspectors.size() > 1) {
+            throw new PersistException("received more than one record");
+        }
+        return inspectors.iterator().next();
+    }
 }

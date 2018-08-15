@@ -99,4 +99,24 @@ public class TaxPayerDAOImp extends AbstractJDBC<TaxPayer, Integer> implements G
     public TaxPayer create(Object object) throws PersistException {
         return persist(object);
     }
+
+    public TaxPayer getTaxPayerByUserId(int userId) throws PersistException {
+        List<TaxPayer> taxPayers = null;
+        String sql = resourceBundle.getString("getTaxPayerByUserId");
+        try (PreparedStatement statement = wrapperConnector.getStatement(sql)) {
+            statement.setInt(1, userId);
+            ResultSet resultSet = statement.executeQuery();
+            taxPayers = parseResultSet(resultSet);
+        } catch (SQLException e) {
+            System.out.println("trouble with sql query");
+            e.printStackTrace();
+        }
+        if (taxPayers == null || taxPayers.size() == 0) {
+            return null;
+        }
+        if (taxPayers.size() > 1) {
+            throw new PersistException("received more than one record");
+        }
+        return taxPayers.iterator().next();
+    }
 }

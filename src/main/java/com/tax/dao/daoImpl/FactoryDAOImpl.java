@@ -17,9 +17,13 @@ public class FactoryDAOImpl implements FactoryDAO {
         inspectorDAOImp = new InspectorDAOImp();
     }
 
-    private static FactoryDAOImpl getFactory() {
+    public static FactoryDAOImpl getFactory() {
         if (factory == null) {
-            factory = new FactoryDAOImpl();
+            synchronized (FactoryDAOImpl.class) {
+                if (factory == null) {
+                    factory = new FactoryDAOImpl();
+                }
+            }
         }
         return factory;
     }
